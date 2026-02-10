@@ -45,6 +45,15 @@ mixin Identificavel{
 
 }
 
+class Produto with Identificavel{
+  final String nome;
+  Produto(this.nome);
+
+  @override
+  String get id => "pruduto: $nome";
+
+}
+
 // ============================================
 // EXERCÍCIO 3: Mixin com Restrição (on)
 // ============================================
@@ -54,7 +63,33 @@ mixin Identificavel{
 //
 // Crie uma classe `CarroEsportivo` que herda de Veiculo e usa o mixin Turbo
 
-// TODO: Crie as classes e o mixin aqui
+class Veiculo{
+  final int velocidadeMaxima;
+
+  Veiculo(this.velocidadeMaxima);
+
+
+}
+
+mixin Turbo on Veiculo{
+void ativarTurbo() => print("a velocidade com o turbo fica ${velocidadeMaxima * 1.5} km") ;
+
+}
+class CarroEsportivo extends Veiculo with Turbo{
+  CarroEsportivo(super.velocidadeMaxima);
+
+}
+
+void main(){
+  final  carroNormal = Veiculo(80);
+  final  carroEsporte = CarroEsportivo(120);
+  carroEsporte.velocidadeMaxima;
+  carroNormal.velocidadeMaxima;
+  carroEsporte.ativarTurbo();
+
+
+
+}
 
 // ============================================
 // EXERCÍCIO 4: Múltiplos Mixins com Método Igual
@@ -65,7 +100,7 @@ mixin Identificavel{
 //
 // Qual log será chamado? O último mixin aplicado vence!
 
-// TODO: Crie os mixins e a classe aqui
+// esse eu ja cheguei a fazer antes e eu sei que o metodo que vai validar sempre sera o ultimo implementado
 
 // ============================================
 // EXERCÍCIO 5: Mixin Prático - Sistema de Habilidades
@@ -81,23 +116,37 @@ mixin Identificavel{
 // Classe `Mago` que herda de Personagem e usa Atacante e Curandeiro
 // Classe `Paladino` que herda de Personagem e usa TODOS os 3 mixins
 
-// TODO: Crie o sistema aqui
 
-void main() {
-  print('=== Exercício 1: Mixin Básico ===');
-  // TODO: Crie um Pato e chame nadar() e voar()
+// achei interessante aqui porque tipo, se eu tenho uma determinado mixin que so pode ser usado em uma determinada classe, eu posso usar também em seus filhos, desdes q os mesmos extendam a super classe.
+mixin Atacante on Personagem{
+  void atacar(final String nome){
+    print("$nome atacou causando 10 de dano!");
+  }
 
-  print('\n=== Exercício 2: Mixin com Propriedades ===');
-  // TODO: Crie um Produto e chame mostrarId()
+}
+mixin Curandeiro on Personagem{
+void curar(final String nome){
+  print("$nome curou 15 de vida");
+}
+}
+mixin Defensor on Personagem{
+void defender(final String nome) => print("$nome está defendendo!");
+}
+abstract class Personagem{
+final String nome;
 
-  print('\n=== Exercício 3: Mixin com Restrição ===');
-  // TODO: Crie um CarroEsportivo e ative o turbo
+Personagem(this.nome);
+}
+class Guerreiro extends Personagem with Atacante, Defensor{
+  Guerreiro(super.nome);
 
-  print('\n=== Exercício 4: Múltiplos Mixins ===');
-  // TODO: Crie um Sistema e chame log() - observe qual é chamado
+}
+class Mago extends Personagem with Atacante, Curandeiro{
+Mago(super.nome);
+}
+class Paladino extends Personagem with Atacante, Curandeiro, Defensor{
+  Paladino(super.nome);
 
-  print('\n=== Exercício 5: Sistema de RPG ===');
-  // TODO: Crie um Guerreiro, Mago e Paladino e teste suas habilidades
 }
 
 /*
