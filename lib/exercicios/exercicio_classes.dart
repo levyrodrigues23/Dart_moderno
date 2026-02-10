@@ -10,7 +10,16 @@
 // - Construtor que recebe nome e idade
 // - Método `apresentar()` que imprime "Olá, meu nome é {nome} e tenho {idade} anos"
 
-// TODO: Crie a classe Pessoa aqui
+class Pessoa{
+  final String nome;
+  final int idade;
+
+  Pessoa(this.nome, this.idade);
+
+  void apresentar(final String nome, final int idade){
+    print("olá, meu nome é $nome e eu tenho $idade anos");
+  }
+}
 
 // ============================================
 // EXERCÍCIO 2: Encapsulamento (Atributos Privados)
@@ -21,7 +30,23 @@
 // - Método `depositar(double valor)` - adiciona ao saldo se valor > 0
 // - Método `sacar(double valor)` - subtrai do saldo se valor <= saldo, retorna bool
 
-// TODO: Crie a classe ContaBancaria aqui
+class ContaBancaria{
+  double _saldo = 0;
+
+  double get saldo => _saldo;
+  void depositar(final double valor){
+    if(valor > 0){
+      _saldo += valor;
+    }
+  }
+  bool sacar(final double valor){
+    if(valor <= _saldo){
+      _saldo -= valor;
+      return true;
+    }
+    return false;
+  }
+}
 
 // ============================================
 // EXERCÍCIO 3: Construtor Nomeado
@@ -32,7 +57,20 @@
 // - Construtor nomeado `Retangulo.quadrado(double lado)` que cria um quadrado
 // - Método `area()` que retorna a área
 
-// TODO: Crie a classe Retangulo aqui
+class Retangulo{
+  final double largura;
+  final double altura;
+
+  Retangulo(this.altura, this.largura);
+
+  Retangulo.quadrado(double lado) : largura = lado, altura = lado;
+
+  double returnArea(final double largura, final double altura){
+    final area = largura * altura;
+    return area;
+  }
+
+}
 
 // ============================================
 // EXERCÍCIO 4: Herança
@@ -48,7 +86,38 @@
 // Crie uma classe `Gato` que herda de Animal:
 // - Sobrescreva `emitirSom()` para imprimir "Miau!"
 
-// TODO: Crie as classes aqui
+class Animal{
+  final String nome;
+
+  Animal(this.nome);
+
+  void emitirSom(){
+    print("printando som generico");
+  }
+
+}
+class Cachorro extends Animal{
+  Cachorro(super.nome);
+
+  @override
+  void emitirSom() {
+   print("auau");
+  }
+
+  void abanarRabo(final String nome){
+    print("o querido $nome está abanando o rabinho");
+  }
+
+}
+
+class Gato extends Animal{
+  Gato(super.nome);
+
+  @override
+  void emitirSom() {
+   print("miau miau");
+  }
+}
 
 // ============================================
 // EXERCÍCIO 5: Classe Abstrata
@@ -61,7 +130,33 @@
 // - Atributo: raio (double)
 // - Implemente os métodos (use 3.14159 para PI)
 
-// TODO: Crie as classes aqui
+abstract class FormaGeometrica{
+
+
+double calcularArea(final double raio);
+double calcularPerimetro(final double raio);
+
+}
+
+class Circulo implements FormaGeometrica{
+  final double raio;
+
+
+  Circulo(this.raio);
+
+  @override
+  double calcularArea(final double raio) {
+    final area = 3.14 * (raio * 2);
+    return area;
+  }
+
+  @override
+  double calcularPerimetro(final double raio) {
+    final perimetro = 2 * 3.14 * raio;
+    return perimetro;
+  }
+
+}
 
 // ============================================
 // EXERCÍCIO 6: Factory Constructor
@@ -71,7 +166,18 @@
 // - Factory constructor `Usuario.fromJson(Map<String, dynamic> json)`
 //   que cria um Usuario a partir de um Map
 
-// TODO: Crie a classe Usuario aqui
+class Usuario{
+  final String nome;
+  final String email;
+
+  Usuario._(this.nome, this.email);
+
+  factory Usuario.fromJson(Map<String, dynamic> json){
+    return Usuario._(json['nome'], json['email']);
+  }
+
+
+}
 
 void main() {
   print('=== Exercício 1: Classe Básica ===');
