@@ -13,7 +13,28 @@
 // - `RelatorioMensal` - gerar() retorna '/relatorio_mensal.pdf'
 // - `RelatorioAnual` - gerar() retorna '/relatorio_anual.pdf'
 
-// TODO: Crie as classes aqui
+abstract class RelatorioFinanceiro{
+  String gerar();
+  void enviar(String path){
+    print('relatorio enviado: $path');
+  }
+}
+
+class RelatorioMensal extends RelatorioFinanceiro{
+  @override
+  String gerar() {
+    return '/relatorio_mensal.pdf';
+  }
+
+}
+
+class RelatorioAnual extends RelatorioFinanceiro{
+  @override
+  String gerar() {
+    return '/relatorio_anual.pdf';
+  }
+
+}
 
 // ============================================
 // EXERCÍCIO 2: Abstract Interface Class
@@ -28,7 +49,35 @@
 // Crie uma classe `ServicoCompra` que recebe um MetodoPagamento
 // e tem método `finalizarCompra(double valor)` que usa o método de pagamento
 
-// TODO: Crie as classes aqui
+abstract interface class MetodoPagamento{
+  void pagar(double valor);
+}
+
+class ServicoCompra{
+  final MetodoPagamento metodoPagamento;
+
+  ServicoCompra(this.metodoPagamento);
+
+  void finalizarCompra(final double valor){
+    metodoPagamento.pagar(valor);
+  }
+}
+
+class PagamentoCartao implements MetodoPagamento{
+  @override
+  void pagar(double valor) {
+    print("pagando $valor no cartao");
+  }
+
+}
+
+class PagameantoPix implements MetodoPagamento{
+  @override
+  void pagar(double valor) {
+    print("pagando $valor no pix");
+  }
+
+}
 
 // ============================================
 // EXERCÍCIO 3: Interface Class
