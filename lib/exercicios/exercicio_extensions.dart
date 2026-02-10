@@ -1,3 +1,4 @@
+
 // ============================================
 // EXERCÍCIOS DE EXTENSIONS
 // ============================================
@@ -12,7 +13,15 @@
 // - Método `capitalizar()` que retorna a string com primeira letra maiúscula
 // - Getter `ehEmail` que retorna true se a string contém '@' e '.'
 
-// TODO: Crie a extension aqui
+extension StringUtils on String{
+  String capitalizar(){
+  if(isEmpty) return this;
+  return this[0].toUpperCase() + substring(1);
+  }
+
+  bool get ehEmail => contains('@') && contains(".");
+}
+
 
 // ============================================
 // EXERCÍCIO 2: Extension em int
@@ -22,7 +31,28 @@
 // - Getter `ehImpar` que retorna true se o número é ímpar
 // - Método `vezes(void Function(int) acao)` que executa uma ação N vezes
 
-// TODO: Crie a extension aqui
+extension IntUtils on int{
+  bool get ehPar => this % 2 == 0;
+
+
+  bool get ehImpar => this % 2 != 0;
+
+
+  void vezes(){
+    for(var i = 0; i < this; i++){
+      print("iteração $i");
+    }
+  }
+
+}
+void main(){
+  print('abc'.capitalizar());
+  print('teste@gmail.com'.ehEmail);
+
+  2.ehImpar;
+  2.ehPar;
+  2.vezes();
+}
 
 // ============================================
 // EXERCÍCIO 3: Extension em List<int>
@@ -32,7 +62,15 @@
 // - Getter `media` que retorna a média dos elementos
 // - Método `maioresQue(int valor)` que retorna uma nova lista só com valores maiores que o parâmetro
 
-// TODO: Crie a extension aqui
+extension ListIntUtils on List<int>{
+  double get soma => fold(0, (a, b) => a + b);
+  double get media => isEmpty ? 0 : soma / length;
+
+  List<int> maioresQue(final int valor){
+    return where((n) => n > valor).toList();
+  }
+
+  }
 
 // ============================================
 // EXERCÍCIO 4: Extension em DateTime
@@ -41,7 +79,15 @@
 // - Getter `ehFimDeSemana` que retorna true se é sábado ou domingo
 // - Método `formatoBR()` que retorna a data no formato "dd/MM/yyyy"
 
-// TODO: Crie a extension aqui
+extension DateTimeUtils on DateTime{
+  bool get ehFimDeSemana =>weekday == DateTime.saturday || weekday == DateTime.sunday;
+
+  String formatoBr(){
+   return '${day.toString().padLeft(2, '0')}/${month.toString().padLeft(2, '0')}/$year';
+  }
+}
+
+
 
 // ============================================
 // EXERCÍCIO 5: Extension em double
@@ -62,37 +108,6 @@
 
 // TODO: Crie a extension aqui
 
-void main() {
-  print('=== Exercício 1: Extension em String ===');
-  // TODO: Teste capitalizar() e ehEmail
-  // 'levy'.capitalizar() deve retornar 'Levy'
-  // 'teste@email.com'.ehEmail deve retornar true
-
-  print('\n=== Exercício 2: Extension em int ===');
-  // TODO: Teste ehPar, ehImpar e vezes()
-  // 4.ehPar deve ser true
-  // 3.vezes((i) => print('Iteração $i'))
-
-  print('\n=== Exercício 3: Extension em List<int> ===');
-  // TODO: Teste soma, media e maioresQue
-  // [1, 2, 3, 4, 5].soma deve ser 15
-  // [1, 2, 3, 4, 5].maioresQue(3) deve ser [4, 5]
-
-  print('\n=== Exercício 4: Extension em DateTime ===');
-  // TODO: Teste ehFimDeSemana e formatoBR
-  // DateTime(2024, 1, 13).ehFimDeSemana deve ser true (sábado)
-  // DateTime(2024, 1, 15).formatoBR() deve ser '15/01/2024'
-
-  print('\n=== Exercício 5: Extension em double ===');
-  // TODO: Teste paraMoeda e arredondado
-  // 1234.567.paraMoeda() deve ser 'R$ 1234,57'
-  // 3.14159.arredondado deve ser 3.14
-
-  print('\n=== Exercício 6: Extension Genérica ===');
-  // TODO: Teste primeiroOuNull, ultimoOuNull e agruparPor
-  // [].primeiroOuNull deve ser null
-  // ['Ana', 'André', 'Bruno'].agruparPor((s) => s[0]) deve agrupar por inicial
-}
 
 /*
 ============================================
