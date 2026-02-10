@@ -19,5 +19,30 @@ void nomeado(){
     curso: "ads");
 
     print("ponto: ${ponto.name}, ${ponto.idade}, ${ponto.curso}");
-    final (name: posicao1, idade:posicao2, curso: posicao3) = ponto; 
+    final (name: posicao1, idade:posicao2, curso: posicao3) = ponto;
+}
+
+// void misto
+// não é algo que eu usaria, é aconselhavel não usar
+
+
+/* void misto(){
+  final ponto = (
+    name: 'jose levy',
+    idade: 42,
+    curso: "ads");
+    final (:curso, :idade, :curso) = ponto;
+
+}
+ */
+
+// tipos de retorno
+
+(String, int) retorno(){
+  return ('', 10);
+}
+
+
+void main(){
+  
 }
