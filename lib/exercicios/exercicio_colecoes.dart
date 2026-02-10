@@ -9,8 +9,15 @@
 
 void exercicio1() {
   var frutas = <String>['banana', 'maçã', 'laranja'];
+  frutas.add("uva");
+  frutas.add("morango");
+  frutas.add("abacaxi");
+  print(frutas.first);
+  print(frutas.last);
+  frutas.remove('banana');
+  print(frutas);
 
-  // TODO:
+
   // 1. Adicione 'uva' à lista
   // 2. Adicione todas as frutas de ['morango', 'abacaxi'] à lista
   // 3. Imprima o primeiro e último elemento
@@ -28,7 +35,10 @@ void exercicio1() {
 void exercicio2() {
   final numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  // TODO: Crie as listas pedidas e imprima
+  final listaPares = numeros.where((n) => n % 2 == 0);
+  final listaMultiplicados = numeros.map((n) => n * 2);
+  print(listaPares);
+  print(listaMultiplicados);
 }
 
 // ============================================
@@ -38,9 +48,10 @@ void exercicio2() {
 
 void exercicio3() {
   final listaDuplicada = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5];
+  final semDuplicatas = listaDuplicada.toSet();
+  print(semDuplicatas);
 
-  // TODO: Crie um Set a partir da lista e depois converta de volta para lista
-  // Imprima a lista sem duplicatas
+
 }
 
 // ============================================
@@ -55,7 +66,9 @@ void exercicio4() {
   final setA = {1, 2, 3, 4, 5};
   final setB = {4, 5, 6, 7, 8};
 
-  // TODO: Realize as operações e imprima os resultados
+setA.union(setB);
+setA.intersection(setB);
+setA.difference(setB);
 }
 
 // ============================================
@@ -65,7 +78,20 @@ void exercicio4() {
 // Nome do aluno => Nota
 
 void exercicio5() {
-  // TODO:
+  final notasAlunos = <String, double>{};
+  notasAlunos['levy'] = 9.5;
+  notasAlunos['maria'] = 8.0;
+  notasAlunos['joao'] = 7.5;
+  notasAlunos['joao'] = 8.5;
+
+  final pedroExiste = notasAlunos.containsKey("pedro");
+    print("pedro existe? $pedroExiste");
+
+notasAlunos.forEach((nome, nota){
+  print("$nome, $nota");
+});
+
+
   // 1. Crie um Map vazio de String para double
   // 2. Adicione: Levy = 9.5, Maria = 8.0, João = 7.5
   // 3. Atualize a nota do João para 8.5
@@ -85,7 +111,10 @@ void exercicio6() {
     'Teclado': {'preco': 150.0, 'quantidade': 30},
   };
 
-  // TODO: Calcule e imprima o valor total (preco * quantidade de cada produto)
+  estoque.forEach((preco, quantidade){
+    ;
+  });
+
 }
 
 // ============================================
