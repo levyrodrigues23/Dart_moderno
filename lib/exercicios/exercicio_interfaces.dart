@@ -91,7 +91,19 @@ class PagameantoPix implements MetodoPagamento{
 // Crie `NotificadorEmail` que IMPLEMENTA Notificador:
 // - Sobrescreva enviar para imprimir "Email: {mensagem}"
 
-// TODO: Crie as classes aqui
+interface class Notificador{
+  void enviar(final String mensagem){
+    print("notificação enviada $mensagem");
+  }
+}
+
+class NotificadorEmail implements Notificador{
+  @override
+  void enviar(String mensagem) {
+      print("email: $mensagem");
+      }
+
+}
 
 // ============================================
 // EXERCÍCIO 4: Múltiplas Interfaces
@@ -102,7 +114,27 @@ class PagameantoPix implements MetodoPagamento{
 //
 // Crie uma classe `SistemaFinanceiro` que implementa AMBAS as interfaces
 
-// TODO: Crie as classes aqui
+interface class ProcessadorPagamento{
+  void processarPagamento(final double valor){}
+
+}
+
+interface class GerarRelatorio{
+  void gerarRelatorio(){}
+}
+
+class SistemaFinanceiro implements ProcessadorPagamento, GerarRelatorio{
+  @override
+  void gerarRelatorio() {
+
+  }
+
+  @override
+  void processarPagamento(double valor) {
+
+  }
+
+}
 
 // ============================================
 // EXERCÍCIO 5: Polimorfismo com Interfaces
@@ -110,7 +142,11 @@ class PagameantoPix implements MetodoPagamento{
 // Crie uma função `processarPagamentos` que recebe uma lista de MetodoPagamento
 // e um valor, e executa o pagamento em cada um
 
-// TODO: Crie a função aqui
+void processarPagamento(List<MetodoPagamento> metodoPagamento, final double valor){
+for(final metodo in metodoPagamento){
+  metodo.pagar(valor);
+}
+}
 
 void main() {
   print('=== Exercício 1: Abstract Class ===');

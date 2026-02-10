@@ -12,8 +12,20 @@
 // Crie um mixin `Voador` com método `voar()` que imprime "Estou voando!"
 // Crie uma classe `Pato` que usa AMBOS os mixins
 
-// TODO: Crie os mixins e a classe aqui
+mixin Nadador{
+  void nadar(){
+    print("estou nadando");
+  }
+}
 
+mixin Voador{
+  void voar(){
+  print("estou voando");
+}}
+
+class Pato with Nadador, Voador{
+
+}
 // ============================================
 // EXERCÍCIO 2: Mixin com Propriedades
 // ============================================
@@ -24,7 +36,14 @@
 // Crie uma classe `Produto` com nome e que implementa o mixin
 // (o id pode ser gerado como 'PROD-{nome}')
 
-// TODO: Crie o mixin e a classe aqui
+mixin Identificavel{
+  String get id;
+
+  void mostrarId(){
+    print("id : $id");
+  }
+
+}
 
 // ============================================
 // EXERCÍCIO 3: Mixin com Restrição (on)
