@@ -13,4 +13,13 @@ void main(){
 
     print('${v.index}: ${v.name}');
   }
+
+print(recuperarDirecao('oeste'));
+
+
+}
+
+
+Direcao recuperarDirecao(String nomeDirecao){
+  return Direcao.values.firstWhere((d)=> d.name == nomeDirecao);
 }

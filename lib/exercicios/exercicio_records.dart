@@ -8,7 +8,10 @@
 // Crie uma função chamada `obterPonto` que retorna um record posicional
 // com dois valores double (x e y). Retorne os valores (5.0, 10.0)
 
-// TODO: Crie a função aqui
+(double, double) obterPonto(){
+return (5.0,10.0);
+}
+
 
 // ============================================
 // EXERCÍCIO 2: Record Nomeado
@@ -17,7 +20,22 @@
 // com os campos: nome (String), preco (double), emEstoque (bool)
 // Retorne um produto de exemplo
 
-// TODO: Crie a função aqui
+({String nome, double preco, bool emEstoque, String? mensagem}) criarProduto(){
+ final bool emEstoque = false;
+
+ if(!emEstoque){
+
+    return (nome: 'julia', preco: 23, emEstoque: false, mensagem: "este ser não está a venda");
+
+ }
+     return (nome: 'julia', preco: 23, emEstoque: true, mensagem: null);
+
+}
+
+
+
+
+
 
 // ============================================
 // EXERCÍCIO 3: Destructuring de Record Posicional
@@ -28,7 +46,9 @@
 void exercicio3() {
   final coordenadas = (42.5, -23.1, 100.0);
 
-  // TODO: Faça o destructuring aqui e imprima os valores
+coordenadas.$1;
+coordenadas.$2;
+coordenadas.$3;
 }
 
 // ============================================
@@ -40,7 +60,9 @@ void exercicio3() {
 void exercicio4() {
   final aluno = (nome: 'Maria Silva', nota: 9.5, aprovado: true);
 
-  // TODO: Faça o destructuring do record nomeado e imprima os valores
+ aluno.nome;
+ aluno.nota;
+ aluno.aprovado;
 }
 
 // ============================================
@@ -49,7 +71,16 @@ void exercicio4() {
 // Crie uma função `calcularEstatisticas` que recebe uma lista de números
 // e retorna um record NOMEADO com: soma, media, quantidade
 
-// TODO: Crie a função aqui
+({int soma, double media, int quantidade}) calcularEstatisticas(List<int> numeros){
+  final soma = numeros.fold(0, (a, b)=> a + b);
+  final quantidade = numeros.length;
+  final media = soma / quantidade;
+
+  return (media: media, soma: soma, quantidade: quantidade);
+
+
+
+}
 
 // ============================================
 // EXERCÍCIO 6: Comparando Records
@@ -63,28 +94,24 @@ void exercicio6() {
   final pessoa3 = (nome: 'Maria', idade: 30);
 
   // TODO: Compare pessoa1 com pessoa2 e pessoa1 com pessoa3
-  // Imprima se são iguais ou diferentes
+  if(pessoa1 == pessoa2){
+    print("essas pessoas são iguais");
+  } else{
+    print("não é igual");
+  }
+
+   if(pessoa1 == pessoa3){
+    print("essas pessoas são iguais");
+  } else{
+    print("não é igual");
+  }
 }
-
-void main() {
-  print('=== Exercício 1 ===');
-  // TODO: Chame obterPonto() e imprima o resultado
-
-  print('\n=== Exercício 2 ===');
-  // TODO: Chame criarProduto() e imprima o resultado
-
-  print('\n=== Exercício 3 ===');
-  exercicio3();
-
-  print('\n=== Exercício 4 ===');
-  exercicio4();
-
-  print('\n=== Exercício 5 ===');
-  // TODO: Teste calcularEstatisticas com [10, 20, 30, 40, 50]
-
-  print('\n=== Exercício 6 ===');
+void main(){
+  print(obterPonto());
+  print(criarProduto());
   exercicio6();
 }
+
 
 /*
 ============================================
